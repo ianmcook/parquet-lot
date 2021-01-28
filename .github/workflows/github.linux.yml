@@ -1,10 +1,10 @@
-name: Run PySpark Code
+name: Run Tasks on Spark
 
 on:
   workflow_dispatch:
     inputs:
-      scriptPath:
-        description: 'Relative path to PySpark script file'
+      taskName:
+        description: Name of task directory
         required: true
     # inputs:
     #   sparkVersions:
@@ -15,8 +15,8 @@ on:
     #   description: 'Some tag'
 
 jobs:
-  run-on-spark:
-    name: Run PySpark code
+  make-parquet-files:
+    name: Generate Parquet Files
     runs-on: ubuntu-latest
     steps:
       - name: Checkout this repo
@@ -38,10 +38,11 @@ jobs:
       - name: Run PySpark script
         shell: python
         run: |
-          import sys, os
+          import os, sys
+          os.mkdir('artifacts')
           sys.path.insert(1, os.environ['GITHUB_WORKSPACE'] + '/polyspark')
-          from polyspark import run_on_spark
-          run_on_spark('${{ github.event.inputs.scriptPath }}', '2.0.0')
+          sys.path.insert(1, os.environ['GITHUB_WORKSPACE'] + '/tasks/${{ github.event.inputs.taskName }}')
+          import caller
       #   continue-on-error: true
       # - name: Setup tmate session
       #   uses: mxschmitt/action-tmate@v3
