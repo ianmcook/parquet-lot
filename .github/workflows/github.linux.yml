@@ -6,7 +6,7 @@ on:
       taskName:
         description: Name of task directory
         required: true
-        default: 'write_all_types'
+        default: 'spark_write_all_types'
       sparkVersions:
         description: JSON array of Spark versions to run on
         required: true
