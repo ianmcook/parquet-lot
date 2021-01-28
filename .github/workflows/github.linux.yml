@@ -19,7 +19,7 @@ jobs:
     name: Generate Parquet Files
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout this repo
+      - name: Checkout parquet-lot repo
         uses: actions/checkout@v2
       - name: Checkout polyspark repo
         uses: actions/checkout@v2
@@ -35,7 +35,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.5
-      - name: Run PySpark script
+      - name: Run script
         shell: python
         run: |
           import os, sys
@@ -46,7 +46,8 @@ jobs:
       #   continue-on-error: true
       # - name: Setup tmate session
       #   uses: mxschmitt/action-tmate@v3
-      - name: Store Artifacts
+      - name: Store files
         uses: actions/upload-artifact@v2
         with:
-          name: artifacts
+          name: parquet-lot
+          path: artifacts
