@@ -7,13 +7,10 @@ on:
         description: Name of task directory
         required: true
         default: 'write_all_types'
-      inputs:
-        sparkVersions:
-          description: JSON array of Spark versions to run on
-          required: true
-          default: '["2.0.0", "3.0.0"]'
-    # tags:
-    #   description: 'Some tag'
+      sparkVersions:
+        description: JSON array of Spark versions to run on
+        required: true
+        default: '["2.0.0", "3.0.0"]'
 
 jobs:
   make-parquet-files:
