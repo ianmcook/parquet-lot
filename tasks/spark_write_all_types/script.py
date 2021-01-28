@@ -19,6 +19,12 @@ schema = StructType([
     StructField("LongType_no_null", LongType(), False),
     StructField("FloatType_null_ok", FloatType(), True),
     StructField("FloatType_no_null", FloatType(), False),
+    StructField("DoubleType_null_ok", DoubleType(), True),
+    StructField("DoubleType_no_null", DoubleType(), False),
+    StructField("DecimalType_38_0_null_ok", DoubleType(), True),
+    StructField("DecimalType_38_0_no_null", DoubleType(), True),
+    StructField("DecimalType_38_38_null_ok", DoubleType(), False),
+    StructField("DecimalType_38_38_no_null", DoubleType(), False),
     #TODO(ianmcook): continue adding types here:
     #https://spark.apache.org/docs/latest/sql-ref-datatypes.html
     #more detail at https://spark.apache.org/docs/2.4.0/sql-reference.html
@@ -27,8 +33,8 @@ schema = StructType([
 ])
 
 #rows contain:
-# 0. bottom of range
-# 1. top of range
+# 0. bottom of range (for numeric types)
+# 1. top of range (for numeric types)
 # 2. zero/empty
 # 3. null for nullable fields, zero/empty for non-nullable
 
@@ -45,7 +51,15 @@ json = """
       "LongType_null_ok": -9223372036854775808,
       "LongType_no_null": -9223372036854775808,
       "FloatType_null_ok": -3.40282346638528860e+38,
-      "FloatType_no_null": -1.40129846432481707e-45
+      "FloatType_no_null": -1.40129846432481707e-45,
+      "DoubleType_null_ok": -4.94065645841246544e-324,
+      "DoubleType_no_null": -1.79769313486231570e+308,
+      "DecimalType_38_0_null_ok": -99999999999999999999999999999999999999,
+      "DecimalType_38_0_no_null": -99999999999999999999999999999999999999,
+      "DecimalType_38_38_null_ok": -.00000000000000000000000000000000000001,
+      "DecimalType_38_38_no_null": -.00000000000000000000000000000000000001,
+      "StringType_null_ok": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "StringType_no_null": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     },
     {
       "ByteType_null_ok": 127,
@@ -57,7 +71,16 @@ json = """
       "LongType_null_ok": 9223372036854775807,
       "LongType_no_null": 9223372036854775807,
       "FloatType_null_ok": 3.40282346638528860e+38,
-      "FloatType_no_null": 1.40129846432481707e-45
+      "FloatType_no_null": 1.40129846432481707e-45,
+      "DoubleType_null_ok": 4.94065645841246544e-324,
+      "DoubleType_no_null": 1.79769313486231570e+308,
+      "DecimalType_38_0_null_ok": 99999999999999999999999999999999999999,
+      "DecimalType_38_0_no_null": 99999999999999999999999999999999999999,
+      "DecimalType_38_38_null_ok": .00000000000000000000000000000000000001,
+      "DecimalType_38_38_no_null": .00000000000000000000000000000000000001,
+      "StringType_null_ok": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "StringType_no_null": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
     },
     {
       "ByteType_null_ok": 0,
@@ -69,7 +92,15 @@ json = """
       "LongType_null_ok": 0,
       "LongType_no_null": 0,
       "FloatType_null_ok": 0.0,
-      "FloatType_no_null": 0.0
+      "FloatType_no_null": 0.0,
+      "DoubleType_null_ok": 0.0,
+      "DoubleType_no_null": 0.0,
+      "DecimalType_38_0_null_ok": 0.0,
+      "DecimalType_38_0_no_null": 0.0,
+      "DecimalType_38_38_null_ok": 0.0,
+      "DecimalType_38_38_no_null": 0.0,
+      "StringType_null_ok": "",
+      "StringType_no_null": ""
     },
     {
       "ByteType_null_ok": null,
@@ -81,13 +112,18 @@ json = """
       "LongType_null_ok": null,
       "LongType_no_null": 0,
       "FloatType_null_ok": null,
-      "FloatType_no_null": 0.0
+      "FloatType_no_null": 0.0,
+      "DoubleType_null_ok": null,
+      "DoubleType_no_null": 0.0,
+      "DecimalType_38_0_null_ok": null,
+      "DecimalType_38_0_no_null": 0.0,
+      "DecimalType_38_38_null_ok": null,
+      "DecimalType_38_38_no_null": 0.0,
+      "StringType_null_ok": null,
+      "StringType_no_null": ""
     }
 ]
 """
-#TODO(ianmcook): consider adding additional rows with above-range and below-
-#range values for some types (like the floating point types) but not for the
-#types for which this causes JSON parsing errors
 
 data = spark.read.schema(schema).json(sc.parallelize([json]))
 # data.show() # for debugging
