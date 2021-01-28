@@ -40,7 +40,7 @@ jobs:
           os.mkdir('artifacts')
           sys.path.insert(1, os.environ['GITHUB_WORKSPACE'] + '/polyspark')
           sys.path.insert(1, os.environ['GITHUB_WORKSPACE'] + '/tasks/${{ github.event.inputs.taskName }}')
-          vers = json.loads(${{ github.event.inputs.sparkVersions }})
+          vers = json.loads('${{ github.event.inputs.sparkVersions }}')
           import caller
       #   continue-on-error: true
       # - name: Setup tmate session
