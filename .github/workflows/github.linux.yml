@@ -37,6 +37,6 @@ jobs:
         run: |
           from polyspark import run_on_spark
           run_on_spark('${{ github.event.inputs.scriptPath }}', '2.0.0')
-      #   continue-on-error: true
-      # - name: Setup tmate session
-      #   uses: mxschmitt/action-tmate@v3
+        continue-on-error: true
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
