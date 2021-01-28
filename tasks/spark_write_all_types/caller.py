@@ -9,4 +9,4 @@ def run(vers=['2.0.0', '3.0.0']):
       comps = comps_200
       if parse_version(ver) >= parse_version('2.4.0'):
         comps += comps_240
-      run_on_spark('tasks/write_all_types/script.py', ver, compression = comps)
+      run_on_spark('tasks/spark_write_all_types/script.py', ver, compression = comps)
