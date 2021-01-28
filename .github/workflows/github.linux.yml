@@ -19,7 +19,9 @@ jobs:
     name: Run PySpark code
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout this repo
+        uses: actions/checkout@v2
+      - name: Checkout polyspark repo
         uses: actions/checkout@v2
         with:
           repository: ursacomputing/polyspark
