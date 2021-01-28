@@ -1,5 +1,6 @@
 # parquet-lot
-Generate Parquet files with multiple versions of Apache Spark
+Generate Parquet files for Spark/Arrow cross-version integration testing
+
 h/t (@sethrosen)[https://twitter.com/sethrosen/status/1354612746990604295] for the name
 
 ## How it works
