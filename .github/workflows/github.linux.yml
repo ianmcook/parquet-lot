@@ -42,7 +42,7 @@ jobs:
           sys.path.insert(1, os.environ['GITHUB_WORKSPACE'] + '/tasks/${{ github.event.inputs.taskName }}')
           import caller
           vers = json.loads('${{ github.event.inputs.sparkVersions }}')
-          run(vers)
+          caller.run(vers)
       #   continue-on-error: true
       # - name: Setup tmate session
       #   uses: mxschmitt/action-tmate@v3
