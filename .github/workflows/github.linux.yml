@@ -46,3 +46,7 @@ jobs:
       #   continue-on-error: true
       # - name: Setup tmate session
       #   uses: mxschmitt/action-tmate@v3
+      - name: Store Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifacts
