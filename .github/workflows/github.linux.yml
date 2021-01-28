@@ -6,11 +6,12 @@ on:
       taskName:
         description: Name of task directory
         required: true
-    # inputs:
-    #   sparkVersions:
-    #     description: 'JSON array of Spark versions'
-    #     required: true
-    #     default: '["2.0.0", "3.0.0"]'
+        default: 'write_all_types'
+    inputs:
+      sparkVersions:
+        description: JSON array of Spark versions to run on
+        required: true
+        default: '["2.0.0", "3.0.0"]'
     # tags:
     #   description: 'Some tag'
 
@@ -38,10 +39,11 @@ jobs:
       - name: Run script
         shell: python
         run: |
-          import os, sys
+          import json, os, sys
           os.mkdir('artifacts')
           sys.path.insert(1, os.environ['GITHUB_WORKSPACE'] + '/polyspark')
           sys.path.insert(1, os.environ['GITHUB_WORKSPACE'] + '/tasks/${{ github.event.inputs.taskName }}')
+          vers = json.loads(${{ github.event.inputs.sparkVersions }})
           import caller
       #   continue-on-error: true
       # - name: Setup tmate session

@@ -1,7 +1,7 @@
 from polyspark import run_on_spark
 from pkg_resources import parse_version
 
-vers = ['2.0.0', '3.0.0']
+#vers = ['2.0.0', '3.0.0'] # assigned in YAML
 comps_200 = ['none', 'snappy', 'gzip'] #, 'lzo'] # need extra libraries
 comps_240 = [] #'brotli', 'lz4', 'zstd'] # need extra libraries
 
