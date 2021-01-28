@@ -22,9 +22,11 @@ schema = StructType([
     StructField("DoubleType_null_ok", DoubleType(), True),
     StructField("DoubleType_no_null", DoubleType(), False),
     StructField("DecimalType_38_0_null_ok", DoubleType(), True),
-    StructField("DecimalType_38_0_no_null", DoubleType(), True),
-    StructField("DecimalType_38_38_null_ok", DoubleType(), False),
+    StructField("DecimalType_38_0_no_null", DoubleType(), False),
+    StructField("DecimalType_38_38_null_ok", DoubleType(), True),
     StructField("DecimalType_38_38_no_null", DoubleType(), False),
+    StructField("StringType_null_ok", DoubleType(), True),
+    StructField("StringType_no_null", DoubleType(), False)
     #TODO(ianmcook): continue adding types here:
     #https://spark.apache.org/docs/latest/sql-ref-datatypes.html
     #more detail at https://spark.apache.org/docs/2.4.0/sql-reference.html
@@ -80,7 +82,6 @@ json = """
       "DecimalType_38_38_no_null": .00000000000000000000000000000000000001,
       "StringType_null_ok": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "StringType_no_null": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
     },
     {
       "ByteType_null_ok": 0,
