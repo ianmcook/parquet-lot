@@ -4,4 +4,4 @@ Generate Parquet files for Spark/Arrow cross-version integration testing
 h/t [@sethrosen](https://twitter.com/sethrosen/status/1354612746990604295) for the name
 
 ## How it works
-parquet-lot contains scripts that write Parquet files for cross-version integration testing of Apache Spark and Apache Arrow. The scripts can on multiple versions of Spark using polyspark. The scripts can be manually triggered to run on GitHub Actions and the user can specify which versions of Spark to run them on. A zip archive of the Parquet files is stored as an artifact.
+parquet-lot is a collection of scripts that write sets of Parquet files. Currently it contains only one script that writes a set of Parquet files with Spark; later it will be extended to write additional types of Parquet files and to write files with Arrow. parquet-lot uses polyspark to run scripts on multiple versions of Spark. The scripts are manually triggered to run on GitHub Actions. The user can specify which versions of Spark to run them on. A zip archive of the Parquet files is stored in Actions as an artifact.
