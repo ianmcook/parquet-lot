@@ -13,7 +13,7 @@ on:
 
 jobs:
   make-parquet-files:
-    name: Generate Parquet Files
+    name: '${{ github.event.inputs.taskName }}'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout parquet-lot repo
