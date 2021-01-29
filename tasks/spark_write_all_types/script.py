@@ -31,10 +31,14 @@ schema = StructType([
     StructField("BinaryType_no_null", BinaryType(), False),
     StructField("BooleanType_null_ok", BooleanType(), True),
     StructField("BooleanType_no_null", BooleanType(), False),
-    #TODO(ianmcook): continue adding types here:
+    StructField("TimestampType_null_ok", TimestampType(), True),
+    StructField("TimestampType_no_null", TimestampType(), False),
+    StructField("DateType_null_ok", TimestampType(), True),
+    StructField("DateType_no_null", TimestampType(), False)
+    #TODO(ianmcook): add complex/nested types (ArrayType, MapType, StructType)
     #https://spark.apache.org/docs/latest/sql-ref-datatypes.html
     #more detail at https://spark.apache.org/docs/2.4.0/sql-reference.html
-    #See nested types examples here:
+    #See examples here:
     #https://docs.databricks.com/_static/notebooks/transform-complex-data-types-python.html
 ])
 
@@ -72,7 +76,11 @@ json = """
       "BinaryType_null_ok": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6e3x9fn+AgYKDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6ChoqOkpaanqKmqq6ytrq+wsbKztLW2t7i5uru8vb6/wMHCw8TFxsfIycrLzM3Oz9DR0tPU1dbX2Nna29zd3t/g4eLj5OXm5+jp6uvs7e7v8PHy8/T19vf4+fr7/P3+/w==",
       "BinaryType_no_null": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6e3x9fn+AgYKDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6ChoqOkpaanqKmqq6ytrq+wsbKztLW2t7i5uru8vb6/wMHCw8TFxsfIycrLzM3Oz9DR0tPU1dbX2Nna29zd3t/g4eLj5OXm5+jp6uvs7e7v8PHy8/T19vf4+fr7/P3+/w==",
       "BooleanType_null_ok": false,
-      "BooleanType_no_null": false
+      "BooleanType_no_null": false,
+      "TimestampType_null_ok": "0001-01-01T00:00:00.000000-00:00",
+      "TimestampType_no_null": "0001-01-01T00:00:00.000000-00:00",
+      "DateType_null_ok": "0001-01-01",
+      "DateType_no_null": "0001-01-01"
     },
     {
       "ByteType_null_ok": 127,
@@ -96,7 +104,11 @@ json = """
       "BinaryType_null_ok": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6e3x9fn+AgYKDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6ChoqOkpaanqKmqq6ytrq+wsbKztLW2t7i5uru8vb6/wMHCw8TFxsfIycrLzM3Oz9DR0tPU1dbX2Nna29zd3t/g4eLj5OXm5+jp6uvs7e7v8PHy8/T19vf4+fr7/P3+/w==",
       "BinaryType_no_null": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6e3x9fn+AgYKDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6ChoqOkpaanqKmqq6ytrq+wsbKztLW2t7i5uru8vb6/wMHCw8TFxsfIycrLzM3Oz9DR0tPU1dbX2Nna29zd3t/g4eLj5OXm5+jp6uvs7e7v8PHy8/T19vf4+fr7/P3+/w==",
       "BooleanType_null_ok": true,
-      "BooleanType_no_null": true
+      "BooleanType_no_null": true,
+      "TimestampType_null_ok": "9999-12-31T23:59:59.999999-00:00",
+      "TimestampType_no_null": "9999-12-31T23:59:59.999999-00:00",
+      "DateType_null_ok": "9999-12-31",
+      "DateType_no_null": "9999-12-31"
     },
     {
       "ByteType_null_ok": 0,
@@ -120,7 +132,11 @@ json = """
       "BinaryType_null_ok": "",
       "BinaryType_no_null": "",
       "BooleanType_null_ok": false,
-      "BooleanType_no_null": false
+      "BooleanType_no_null": false,
+      "TimestampType_null_ok": "0001-01-01T00:00:00.000000-00:00",
+      "TimestampType_no_null": "0001-01-01T00:00:00.000000-00:00",
+      "DateType_null_ok": "0001-01-01",
+      "DateType_no_null": "0001-01-01"
     },
     {
       "ByteType_null_ok": -0,
@@ -144,7 +160,11 @@ json = """
       "BinaryType_null_ok": "",
       "BinaryType_no_null": "",
       "BooleanType_null_ok": false,
-      "BooleanType_no_null": false
+      "BooleanType_no_null": false,
+      "TimestampType_null_ok": "0001-01-01T00:00:00.000000-00:00",
+      "TimestampType_no_null": "0001-01-01T00:00:00.000000-00:00",
+      "DateType_null_ok": "0001-01-01",
+      "DateType_no_null": "0001-01-01"
     },
     {
       "ByteType_null_ok": null,
@@ -168,7 +188,11 @@ json = """
       "BinaryType_null_ok": null,
       "BinaryType_no_null": "",
       "BooleanType_null_ok": null,
-      "BooleanType_no_null": false
+      "BooleanType_no_null": false,
+      "TimestampType_null_ok": null,
+      "TimestampType_no_null": "0001-01-01T00:00:00.000000-00:00",
+      "DateType_null_ok": null,
+      "DateType_no_null": "0001-01-01"
     }
 ]
 """
