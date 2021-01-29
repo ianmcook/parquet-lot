@@ -35,11 +35,6 @@ schema = StructType([
     StructField("TimestampType_no_null", TimestampType(), False),
     StructField("DateType_null_ok", TimestampType(), True),
     StructField("DateType_no_null", TimestampType(), False)
-    #TODO(ianmcook): add complex/nested types (ArrayType, MapType, StructType)
-    #https://spark.apache.org/docs/latest/sql-ref-datatypes.html
-    #more detail at https://spark.apache.org/docs/2.4.0/sql-reference.html
-    #See examples here:
-    #https://docs.databricks.com/_static/notebooks/transform-complex-data-types-python.html
 ])
 
 #rows contain:
@@ -49,7 +44,6 @@ schema = StructType([
 # 3. negative zero/empty
 # 4. null for nullable fields, zero/empty for non-nullable
 
-#TODO(ianmcook): continue adding rows here
 json = """
 [
     {
@@ -198,13 +192,15 @@ json = """
 data = spark.read.schema(schema).json(sc.parallelize([json]))
 # data.show() # for debugging
 
-#TODO(ianmcook): write several copies of data with some of the other Parquet
-#options toggled off/on:
+#TODO(ianmcook): consider writing several copies of data with some of the other
+# Parquet options toggled off/on:
 # https://spark.apache.org/docs/latest/sql-data-sources-parquet.html#configuration
 
+task_name = args.get('task_name') or 'task'
 comps = args.get('compression') or ['none']
+
 for comp in comps:
-    file = 'artifacts/all_types_spark_' + spark.version + '_' + comp
+    file = 'artifacts/' + task_name + '_' + spark.version + '_' + comp
     data.repartition(1).write.parquet(file, compression = comp)
 
 spark.stop()
