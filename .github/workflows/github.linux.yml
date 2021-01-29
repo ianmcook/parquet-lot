@@ -45,7 +45,7 @@ jobs:
       # - name: Setup tmate session
       #   uses: mxschmitt/action-tmate@v3
       - name: Set current date and time
-        run: echo "dttm=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+        run: echo "dttm=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
       - name: Store files
         uses: actions/upload-artifact@v2
         with:
