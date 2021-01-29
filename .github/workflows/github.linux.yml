@@ -44,8 +44,10 @@ jobs:
       #   continue-on-error: true
       # - name: Setup tmate session
       #   uses: mxschmitt/action-tmate@v3
+      - name: Set current date and time
+        run: echo "dttm=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
       - name: Store files
         uses: actions/upload-artifact@v2
         with:
-          name: parquet-lot
+          name: '${{ github.event.inputs.taskName }}_${{ env.dttm }}'
           path: artifacts
