@@ -33,8 +33,8 @@ schema = StructType([
     StructField("BooleanType_no_null", BooleanType(), False),
     StructField("TimestampType_null_ok", TimestampType(), True),
     StructField("TimestampType_no_null", TimestampType(), False),
-    StructField("DateType_null_ok", TimestampType(), True),
-    StructField("DateType_no_null", TimestampType(), False)
+    StructField("DateType_null_ok", DateType(), True),
+    StructField("DateType_no_null", DateType(), False)
 ])
 
 #rows contain:
