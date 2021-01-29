@@ -6,11 +6,10 @@ on:
       taskName:
         description: Name of task directory
         required: true
-        default: 'spark_write_all_simple_types'
       sparkVersions:
         description: JSON array of Spark versions to run on
         required: true
-        default: '["2.0.0", "3.0.0"]'
+        default: '["2.0.0", "3.0.1"]'
 
 jobs:
   make-parquet-files:
