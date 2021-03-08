@@ -192,10 +192,6 @@ json = """
 data = spark.read.schema(schema).json(sc.parallelize([json]))
 # data.show() # for debugging
 
-#TODO(ianmcook): consider writing several copies of data with some of the other
-# Parquet options toggled off/on:
-# https://spark.apache.org/docs/latest/sql-data-sources-parquet.html#configuration
-
 task_name = args.get('task_name') or 'task'
 comps = args.get('compression') or ['none']
 
