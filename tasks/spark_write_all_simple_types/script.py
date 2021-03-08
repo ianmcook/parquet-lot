@@ -202,4 +202,4 @@ for comp in comps:
 spark.stop()
 
 with open('artifacts/' + task_name + '_' + 'reference.json', 'w') as ref:
-    ref.write(json)
+    ref.write(json.lstrip())
