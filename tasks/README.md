@@ -1,9 +1,9 @@
 # tasks
 Each subdirectory of this `tasks` directory represents a parquet-lot task
 ## What each task consists of
-Each subdirectory contains three files
+Each subdirectory contains three files:
 * `script.py`: a PySpark script controlling what data is written
-* `caller.py`: a Python script that calls `script.py` multiple times in series with different parameters
+* `caller.py`: a Python script that calls `script.py` multiple times (in series) with different parameters
 * `README.md`: a Markdown file describing what the task does
 
 ## How to add a new task
