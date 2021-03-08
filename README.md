@@ -8,13 +8,12 @@ parquet-lot is a collection of scripts that write sets of Parquet files. Current
 
 ## How to use it
 1. Fork the repository
-2. In your fork, go to Actions
-3. Enable workflows in your fork
-4. Select a workflow (urrently there is only one, named **Run Tasks on Spark**)
-5. Click to open the **Run workflow** meny
-6. Enter the name of a task directory (currently there are only two named `spark_write_all_simple_types` or `spark_write_nan_inf`)
-7. Enter a JSON array of Spark versions (no lower than version 2.0.0)
-8. Click the **Run workflow** button
-9. Wait for the run to finish
-10. Click the finished run
-11. Under **Artifacts**, click to download the zip archive of files
+2. In your fork, go to **Actions** and enable workflows
+3. Select a workflow (currently there is only one, named **Run Tasks on Spark**)
+4. Click to open the **Run workflow** menu
+5. Enter the name of a task directory (currently there are only two named `spark_write_all_simple_types` or `spark_write_nan_inf`)
+6. Enter a JSON array of Spark versions (no lower than version 2.0.0)
+7. Click the **Run workflow** button
+8. Wait for the run to finish
+9. Click the finished run
+10. Under **Artifacts**, click to download the zip archive of files
