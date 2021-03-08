@@ -12,3 +12,4 @@ Use multiple versions of Spark to write small Parquet files containing floating 
     - `-Infinity` values in the third
 - Writes multiple versions of each file using different compression formats
   - Uncompressed, Snappy, Gzip, and LZ4
+- Writes a reference JSON file containing the source data

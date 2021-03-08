@@ -200,3 +200,6 @@ for comp in comps:
     data.repartition(1).write.parquet(file, compression = comp)
 
 spark.stop()
+
+with open('artifacts/' + task_name + '_' + 'reference.json', 'w') as ref:
+    ref.write(json)

@@ -15,3 +15,4 @@ Use multiple versions of Spark to write small Parquet files representing all sup
   - Including NUL and non-printable characters
   - Do not include multibyte characters
 - Values do not include `NaN`, `Infinity`, or `-Infinity`
+- Writes a reference JSON file containing the source data
