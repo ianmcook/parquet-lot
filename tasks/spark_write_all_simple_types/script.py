@@ -1,4 +1,4 @@
-import sys, json
+import json, re, sys
 args = json.loads(sys.argv[1].replace('\\"', '"')) if len(sys.argv) > 1 else {}
 
 from pyspark.sql import SparkSession
@@ -201,5 +201,11 @@ for comp in comps:
 
 spark.stop()
 
+json_out = json.strip().lstrip('[').rstrip(']').strip()
+subs = (('\s*},\s*\n\s*{\s*', '}\n{'), (',\n\s*', ', '), ('{\s+', '{'), ('\s+}', '}'))
+for sub in subs:
+    json_out = re.sub(sub[0], sub[1], json_out)
+json_out = json_out + '\n'
+
 with open('artifacts/' + task_name + '_' + 'reference.json', 'w') as ref:
-    ref.write(json.lstrip())
+    ref.write(json_out)
